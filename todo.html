@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+    <link href="./css/bulma.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+</head>
+<header>
+    <h1 class="title p-4">Todo List</h1>
+</header>
+
+<body>
+    <div id="app">
+        <article class="wrap">
+            <section class="todo-form columns is-centered p-4">
+                <div class="column is-5">
+                    <input type="text" name="todo-text" class="input" placeholder="Please input Todo" :value="text"
+                        @input="inputText" />
+                </div>
+                <div class="column is-1">
+                    <button class="button is-link" @click="addTodo">Add Todo</button>
+                </div>
+            </section>
+            <section class="list-area is-small columns p-4">
+                <div class="area-incomplete column is-centered">
+                    <p class="todo-title subtitle">Todo</p>
+                    <ul class="todo-area">
+                        <li v-for="(item, i) in incompleteTodo" :key="i" class="list">
+                            <div class="card p-1 m-1">
+                                <span class="list-label">{{ item.text }}</span>
+                                <span class="buttons are-small is-pulled-right">
+                                    <button class="button is-success" @click="toggleIsDone(item.id)">Done</button>
+                                    <button class="button is-danger" @click="deleteTodo(item.id)">Delete</button>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="area-complete column is-centered">
+                    <p class="todo-title subtitle">Done</p>
+                    <ul class="todo-area">
+                        <li v-for="(item, i) in dones" :key="i" class="list">
+                            <div class="card p-1 m-1">
+                                <span class="list-label">{{ item.text }}</span>
+                                <span class="buttons are-small is-pulled-right">
+                                    <button class="button is-warning" @click="toggleIsDone(item.id)">Return</button>
+                                    <button class="button is-danger" @click="deleteTodo(item.id)">Delete</button>
+                                </span>    
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+    </div>
+    <!-- 本番用 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script> -->
+    <!-- <script src="./script/vue.min.js?ver=2.6.12"></script> -->
+    <!-- 開発用 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> -->
+    <script src="./script/vue.js?ver=2.6.12"></script>
+    <script src="./script/script.js"></script>
+</body>
+
+</html>
